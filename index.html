@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Wahner Heide: Naturerbe zwischen Köln und Bonn</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================
+       CORE RESETS & DESIGN SYSTEM
+       Tiefschwarz, weiße Typografie, keine KI-Farbverläufe, keine Emojis
+    ============================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg: #000000;
+      --bg-panel: #0a0c10;
+      --bg-card: #11141c;
+      --bg-card-top: #171b26;
+      
+      --text: #ffffff;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      
+      --border: rgba(255, 255, 255, 0.12);
+      --border-focus: rgba(255, 255, 255, 0.45);
+
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --yellow: #eab308;
+
+      --font-head: 'Syne', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+
+    /* =============================================================
+       NAVIGATION
+    ============================================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      padding: 0 max(1rem, 4vw);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-mark {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-mark-dot {
+      width: 6px;
+      height: 6px;
+      background: #ffffff;
+      border-radius: 50%;
+    }
+
+    .nav-title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-sound {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.4rem 0.85rem;
+      color: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-sound:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .sound-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 10px;
+    }
+
+    .sound-bar {
+      width: 2px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 1px;
+    }
+
+    .btn-sound.playing .sound-bar:nth-child(1) { animation: barPlay 0.7s infinite alternate; }
+    .btn-sound.playing .sound-bar:nth-child(2) { animation: barPlay 0.5s infinite alternate 0.2s; }
+    .btn-sound.playing .sound-bar:nth-child(3) { animation: barPlay 0.9s infinite alternate 0.4s; }
+
+    @keyframes barPlay {
+      0% { height: 2px; }
+      100% { height: 10px; }
+    }
+
+    .btn-cta {
+      background: #ffffff;
+      color: #000000;
+      border-radius: 9999px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-cta:hover {
+      background: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================
+       HERO: 260px CURSOR & TOUCH SPOTLIGHT
+    ============================================================= */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+      padding: 5.5rem 1.25rem 3rem 1.25rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-photo-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('wahner-heide.jpg');
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.4s ease-out;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .hero-photo-layer.active {
+      opacity: 1;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 9vw, 7.2rem);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      user-select: none;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 2.25rem auto;
+      line-height: 1.6;
+    }
+
+    .hero-hint-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+    }
+
+    .hero-arrow-down {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+      color: var(--text-dim);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-arrow-down:hover {
+      color: #ffffff;
+    }
+
+    .down-icon {
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+      transform: rotate(45deg);
+      animation: pulseDown 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDown {
+      0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.4; }
+      50% { transform: translateY(5px) rotate(45deg); opacity: 1; }
+    }
+
+    /* =============================================================
+       IMMERSIVE PINNED STAGE (KAPITEL 1-3)
+       Scroll-Tiefe: 450vh (nicht zu schnell)
+    ============================================================= */
+    .pin-stage-wrapper {
+      position: relative;
+      height: 420vh;
+      background: #000000;
+    }
+
+    .pin-stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.08);
+      transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .stage-image.active {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+
+    .stage-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%),
+                  linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 35%, rgba(0,0,0,0.9) 100%);
+      z-index: 2;
+    }
+
+    .stage-text-box {
+      position: relative;
+      z-index: 5;
+      max-width: 850px;
+      width: 90%;
+      padding: 1.5rem;
+    }
+
+    .chap-card {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+
+    .chap-card.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chap-tag {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      border-bottom: 2px solid #ffffff;
+      padding-bottom: 3px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .chap-heading {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .chap-desc {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    /* =============================================================
+       ALLGEMEINE SECTION-STYLES
+    ============================================================= */
+    .section {
+      padding: clamp(3.5rem, 8vw, 6.5rem) max(1rem, 4vw);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-p {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 650px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    /* =============================================================
+       WANDERWEGE MIT DYNAMISCHEM HÖHENPROFIL BEIM SCROLLEN
+       Scroll-Tiefe: 520vh (deutlich kontrolliertere Geschwindigkeit)
+       Das Höhenprofil zeichnet sich kontinuierlich mit dem Scrollen!
+    ============================================================= */
+    .trails-stack-section {
+      position: relative;
+      height: 520vh;
+      background: #000000;
+    }
+
+    .trails-sticky-viewport {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4.5rem max(1rem, 4vw) 2rem max(1rem, 4vw);
+      overflow: hidden;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .trails-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .trails-tabs {
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+
+    .trail-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .trail-tab.active {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .card-stack-arena {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      perspective: 1200px;
+    }
+
+    .stack-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      transform-origin: center bottom;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.6s ease,
+                  filter 0.6s ease,
+                  border-color 0.4s ease;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+      overflow: hidden;
+    }
+
+    .stack-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .stack-card-0::before { background: var(--red); }
+    .stack-card-1::before { background: var(--blue); }
+    .stack-card-2::before { background: var(--yellow); }
+
+    .stack-card.state-behind {
+      transform: translateY(-24px) scale(0.92);
+      opacity: 0.3;
+      filter: blur(4px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .stack-card.state-active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+      border-color: #ffffff;
+      pointer-events: auto;
+      z-index: 5;
+    }
+
+    .stack-card.state-ahead {
+      transform: translateY(115%) scale(1.05);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .card-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .trail-color-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    .trail-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .trail-metrics-grid {
+      display: flex;
+      gap: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .metric-pill {
+      background: #000000;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      flex: 1;
+    }
+
+    .metric-name {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 700;
+    }
+
+    .metric-num {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .trail-text-body {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .trail-start-line {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Interaktives Höhenprofil Panel */
+    .card-vis-panel {
+      height: 100%;
+      background: #080a0e;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .vis-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .live-height-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.25rem 0.65rem;
+      color: #ffffff;
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+    }
+
+    .route-svg-box {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      margin: 1rem 0;
+    }
+
+    .route-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Führungs-Gitter */
+    .grid-line {
+      stroke: rgba(255, 255, 255, 0.08);
+      stroke-dasharray: 4;
+      stroke-width: 1;
+    }
+
+    .route-path-background {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.15);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .route-path-animated {
+      fill: none;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 450;
+      stroke-dashoffset: 450;
+      transition: stroke-dashoffset 0.05s linear;
+    }
+
+    .marker-dot {
+      fill: #ffffff;
+      stroke: #000000;
+      stroke-width: 2.5;
+      r: 6;
+      transition: cx 0.05s linear, cy 0.05s linear;
+    }
+
+    .vis-footer-stat {
+      font-size: 0.8rem;
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    @media (max-width: 860px) {
+      .trails-stack-section {
+        height: auto;
+      }
+      .trails-sticky-viewport {
+        position: relative;
+        height: auto;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+      .card-stack-arena {
+        height: auto;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .stack-card {
+        position: relative;
+        flex: 0 0 90vw;
+        height: auto;
+        min-height: 440px;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        scroll-snap-align: center;
+      }
+    }
+
+    /* =============================================================
+       NEU: VOLL ANIMIERTER REGELN SCROLL-ABLAUF
+       Scroll-Tiefe: 380vh
+       Beim Scrollen schaltet sich Regel für Regel mit 3D Schwenk & Radar frei!
+    ============================================================= */
+    .rules-scroll-section {
+      position: relative;
+      height: 380vh;
+      background: #000000;
+    }
+
+    .rules-sticky-stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4.5rem max(1rem, 4vw) 2rem max(1rem, 4vw);
+      overflow: hidden;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .rules-top-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .rules-progress-track {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-prog-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-dim);
+      transition: all 0.3s;
+    }
+
+    .rule-prog-dot.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ffffff;
+    }
+
+    /* 3D Container der drei Regeln */
+    .rules-showcase {
+      position: relative;
+      width: 100%;
+      height: 380px;
+    }
+
+    .rule-stage-card {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.75rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0.94) translateY(30px);
+      filter: blur(6px);
+      pointer-events: none;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .rule-stage-card.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+      border-color: #ffffff;
+      pointer-events: auto;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 255, 255, 0.08);
+    }
+
+    .rule-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .rule-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red);
+    }
+
+    .rule-big-h3 {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
+    .rule-detail-p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Radar / Warn-Animation rechts */
+    .rule-radar-box {
+      height: 100%;
+      background: #080a0e;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .radar-sweep-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1.25rem;
+      animation: rotateRadar 10s linear infinite;
+    }
+
+    @keyframes rotateRadar {
+      100% { transform: rotate(360deg); }
+    }
+
+    .radar-icon-center {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: counterRotate 10s linear infinite;
+    }
+
+    @keyframes counterRotate {
+      100% { transform: rotate(-360deg); }
+    }
+
+    .radar-status-caption {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+    }
+
+    @media (max-width: 860px) {
+      .rules-scroll-section {
+        height: auto;
+      }
+      .rules-sticky-stage {
+        position: relative;
+        height: auto;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+      .rules-showcase {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .rule-stage-card {
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .rule-radar-box {
+        display: none;
+      }
+    }
+
+    /* =============================================================
+       NEU: VOLL ANIMIERTER ZUG-JOURNEY SCROLL-ABLAUF (HINKOMMEN)
+       Scroll-Tiefe: 350vh
+       Beim Scrollen fährt der Zug live über die Schiene von 0% bis 100%!
+    ============================================================= */
+    .transit-scroll-section {
+      position: relative;
+      height: 350vh;
+      background: #000000;
+    }
+
+    .transit-sticky-stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4.5rem max(1rem, 4vw) 2rem max(1rem, 4vw);
+      overflow: hidden;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .transit-hud-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    .transit-controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .live-odometer {
+      display: flex;
+      gap: 1.5rem;
+      background: #000000;
+      padding: 0.6rem 1.25rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .odo-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .odo-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-dim);
+    }
+
+    .odo-val {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    /* Die Scroll-gesteuerte Schienen-Animation */
+    .transit-rail-arena {
+      background: #080a0e;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .rail-track-line {
+      position: absolute;
+      top: 38px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .rail-glow-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 0 15px #ffffff;
+      transition: width 0.08s linear;
+    }
+
+    /* Das fahrende Zug-Symbol */
+    .train-moving-beacon {
+      position: absolute;
+      top: -14px;
+      left: 0%;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px #ffffff;
+      z-index: 5;
+      transition: left 0.08s linear;
+    }
+
+    .rail-stops-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stop-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .stop-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #000000;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      transition: all 0.3s;
+    }
+
+    .stop-node.passed .stop-circle {
+      border-color: #ffffff;
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 0 15px #ffffff;
+    }
+
+    .stop-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.2rem;
+    }
+
+    .stop-desc {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+    }
+
+    .transit-info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .transit-text-expl {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .transit-text-expl strong {
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .transit-scroll-section {
+        height: auto;
+      }
+      .transit-sticky-stage {
+        position: relative;
+        height: auto;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+      .rail-track-line, .train-moving-beacon {
+        display: none;
+      }
+      .rail-stops-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .stop-node {
+        flex-direction: row;
+        text-align: left;
+        gap: 1rem;
+      }
+      .stop-circle {
+        margin-bottom: 0;
+      }
+    }
+
+    /* =============================================================
+       FOOTER
+    ============================================================= */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem max(1rem, 4vw);
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================
+       NAVIGATION
+  ============================================================= -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-mark">
+        <div class="nav-mark-dot"></div>
+      </div>
+      <span class="nav-title">Wahner Heide</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#erlebnis">Erlebnis</a></li>
+      <li><a href="#wandern">Wanderwege</a></li>
+      <li><a href="#regeln">Regeln</a></li>
+      <li><a href="#anreise">Anfahrt</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-sound" id="soundToggle" title="Naturgeräusche an und ausschalten">
+        <div class="sound-bars">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
+        <span id="soundLabel">AUDIO AN</span>
+      </button>
+
+      <a href="#wandern" class="btn-cta">
+        Touren
+      </a>
+    </div>
+  </nav>
+
+  <!-- =============================================================
+       HERO: PURE BLACK + 260px CURSOR & TOUCH SPOTLIGHT
+  ============================================================= -->
+  <header class="hero" id="hero">
+    <div class="hero-photo-layer" id="cursorReveal"></div>
+
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span>Naturschutzgebiet bei Köln und Bonn</span>
+      </div>
+
+      <h1 class="hero-title">Wahner Heide</h1>
+
+      <p class="hero-sub">
+        Riesige Sanddünen, lila Heide und uralte Wälder. Früher war hier über 180 Jahre lang militärisches Sperrgebiet. Deshalb konnte die Natur hier komplett ungestört wachsen.
+      </p>
+
+      <div class="hero-hint-pill">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Fahr mit der Maus oder wische über das Bild zum Freilegen</span>
+      </div>
+    </div>
+
+    <a href="#erlebnis" class="hero-arrow-down">
+      <div class="down-icon"></div>
+      <span>Nach unten scrollen</span>
+    </a>
+  </header>
+
+  <!-- =============================================================
+       IMMERSIVE PINNED STAGE (KAPITEL 1-3)
+  ============================================================= -->
+  <section class="pin-stage-wrapper" id="erlebnis">
+    <div class="pin-stage" id="immersiveStage">
+      <div class="stage-image active" id="bgImg1" style="background-image: url('wahner-heide.jpg');"></div>
+      <div class="stage-image" id="bgImg2" style="background-image: url('birkenwald.jpg');"></div>
+      <div class="stage-image" id="bgImg3" style="background-image: url('bachlauf.jpg');"></div>
+
+      <div class="stage-vignette"></div>
+
+      <div class="stage-text-box">
+        <div class="chap-card active" id="cardChap1">
+          <span class="chap-tag">Kapitel 01 : Die Heide</span>
+          <h2 class="chap-heading">Im Spätsommer ist hier alles lila</h2>
+          <p class="chap-desc">
+            Die Wahner Heide ist das zweitgrößte Naturschutzgebiet in NRW. Hier gibt es echte Sanddünen wie am Meer. Wenn im August und September die Besenheide blüht, sieht die Landschaft wie ein anderer Planet aus.
+          </p>
+        </div>
+
+        <div class="chap-card" id="cardChap2">
+          <span class="chap-tag">Kapitel 02 : Der Wald</span>
+          <h2 class="chap-heading">Niemand durfte die Bäume fällen</h2>
+          <p class="chap-desc">
+            Weil das Gebiet fast zwei Jahrhunderte lang Truppenübungsplatz war, durfte kein Mensch rein. Was sich krass anhört, war für die Natur genial: Seltene Tiere wie die Heidelerche konnten ohne Stress ihre Jungen großziehen.
+          </p>
+        </div>
+
+        <div class="chap-card" id="cardChap3">
+          <span class="chap-tag">Kapitel 03 : Das Wasser</span>
+          <h2 class="chap-heading">Eiskalte Bäche und geheime Moore</h2>
+          <p class="chap-desc">
+            Mitten durch den Sand fließen Bäche wie der Kurtenwaldbach. Der Sandboden filtert das Wasser glasklar. In alten Tongruben haben sich kleine Moore gebildet, in denen seltene Frösche und Libellen leben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       WANDERWEGE MIT DYNAMISCHEM HÖHENPROFIL BEIM SCROLLEN
+       Höhe und Route zeichnen sich beim Herunterscrollen live!
+  ============================================================= -->
+  <section class="trails-stack-section" id="wandern">
+    <div class="trails-sticky-viewport">
+      <div class="trails-top-bar">
+        <div>
+          <span class="section-tag">Wandern</span>
+          <h2 class="section-h2" style="margin-bottom: 0.25rem;">Drei gute Touren zum Laufen</h2>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            In der Heide sind alle Wege mit farbigen Holzpfählen markiert. Wenn man den Farben folgt, kann man sich gar nicht verlaufen.
+          </p>
+        </div>
+
+        <div class="trails-tabs">
+          <button class="trail-tab active" id="tab0" onclick="setManualTrail(0)">Roter Weg</button>
+          <button class="trail-tab" id="tab1" onclick="setManualTrail(1)">Blauer Weg</button>
+          <button class="trail-tab" id="tab2" onclick="setManualTrail(2)">Gelber Weg</button>
+        </div>
+      </div>
+
+      <div class="card-stack-arena" id="cardStackArena">
+        <!-- Karte 0: Roter Weg (Fliegenberg) -->
+        <div class="stack-card stack-card-0 state-active" id="stackCard0">
+          <div>
+            <div class="card-badge-row">
+              <div class="trail-color-dot" style="background: var(--red);"></div>
+              <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Roter Weg</span>
+            </div>
+            <h3 class="trail-title">Fliegenberg Runde</h3>
+            <div class="trail-metrics-grid">
+              <div class="metric-pill">
+                <div class="metric-name">Länge</div>
+                <div class="metric-num">8,5 km</div>
+              </div>
+              <div class="metric-pill">
+                <div class="metric-name">Dauer</div>
+                <div class="metric-num">2,5 Std.</div>
+              </div>
+            </div>
+            <p class="trail-text-body">
+              Geht hoch auf die Düne mit Aussicht über das Rheintal bis zum Kölner Dom. Am besten nachmittags laufen, wenn die Sonne tief steht.
+            </p>
+            <div class="trail-start-line">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Start: Parkplatz Forsthaus Telegraph</span>
+            </div>
+          </div>
+
+          <div class="card-vis-panel">
+            <div class="vis-header">
+              <span>Echtzeit Höhenprofil</span>
+              <div class="live-height-badge" id="liveHeight0">64 m</div>
+            </div>
+            
+            <div class="route-svg-box">
+              <svg class="route-svg" viewBox="0 0 300 140">
+                <line x1="10" y1="20" x2="290" y2="20" class="grid-line" />
+                <line x1="10" y1="70" x2="290" y2="70" class="grid-line" />
+                <line x1="10" y1="120" x2="290" y2="120" class="grid-line" />
+                <!-- Basis-Pfad (Schatten) -->
+                <path class="route-path-background" d="M 15 110 Q 75 100, 150 25 T 285 95" />
+                <!-- Animierter Höhen-Pfad beim Scrollen -->
+                <path class="route-path-animated" id="animPath0" stroke="var(--red)" d="M 15 110 Q 75 100, 150 25 T 285 95" />
+                <circle class="marker-dot" id="markerDot0" cx="15" cy="110" />
+              </svg>
+            </div>
+
+            <div class="vis-footer-stat">
+              <span>Gipfel: Fliegenberg (134 m)</span>
+              <span>Blick bis Köln</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Karte 1: Blauer Weg (Geisterbusch) -->
+        <div class="stack-card stack-card-1 state-ahead" id="stackCard1">
+          <div>
+            <div class="card-badge-row">
+              <div class="trail-color-dot" style="background: var(--blue);"></div>
+              <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Blauer Weg</span>
+            </div>
+            <h3 class="trail-title">Geisterbusch Tour</h3>
+            <div class="trail-metrics-grid">
+              <div class="metric-pill">
+                <div class="metric-name">Länge</div>
+                <div class="metric-num">6,2 km</div>
+              </div>
+              <div class="metric-pill">
+                <div class="metric-name">Dauer</div>
+                <div class="metric-num">1,5 Std.</div>
+              </div>
+            </div>
+            <p class="trail-text-body">
+              Entspannte Runde über weite Wiesen. Hier stehen oft Glanrinder und Ziegen auf den Weiden, die das Gras abfressen, damit die Heide nicht zuwächst.
+            </p>
+            <div class="trail-start-line">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Start: Portal Turmhof in Rösrath</span>
+            </div>
+          </div>
+
+          <div class="card-vis-panel">
+            <div class="vis-header">
+              <span>Echtzeit Höhenprofil</span>
+              <div class="live-height-badge" id="liveHeight1">72 m</div>
+            </div>
+
+            <div class="route-svg-box">
+              <svg class="route-svg" viewBox="0 0 300 140">
+                <line x1="10" y1="20" x2="290" y2="20" class="grid-line" />
+                <line x1="10" y1="70" x2="290" y2="70" class="grid-line" />
+                <line x1="10" y1="120" x2="290" y2="120" class="grid-line" />
+                <path class="route-path-background" d="M 15 90 Q 90 65, 180 85 T 285 75" />
+                <path class="route-path-animated" id="animPath1" stroke="var(--blue)" d="M 15 90 Q 90 65, 180 85 T 285 75" />
+                <circle class="marker-dot" id="markerDot1" cx="15" cy="90" />
+              </svg>
+            </div>
+
+            <div class="vis-footer-stat">
+              <span>Weidelandschaft (88 m)</span>
+              <span>Glanrinder Weide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Karte 2: Gelber Weg (Kurtenwaldbach) -->
+        <div class="stack-card stack-card-2 state-ahead" id="stackCard2">
+          <div>
+            <div class="card-badge-row">
+              <div class="trail-color-dot" style="background: var(--yellow);"></div>
+              <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Gelber Weg</span>
+            </div>
+            <h3 class="trail-title">Bachtal Runde</h3>
+            <div class="trail-metrics-grid">
+              <div class="metric-pill">
+                <div class="metric-name">Länge</div>
+                <div class="metric-num">4,8 km</div>
+              </div>
+              <div class="metric-pill">
+                <div class="metric-name">Dauer</div>
+                <div class="metric-num">1,2 Std.</div>
+              </div>
+            </div>
+            <p class="trail-text-body">
+              Perfekt für heiße Sommertage. Der Weg verläuft fast komplett im Schatten an alten Bächen und Teichen entlang.
+            </p>
+            <div class="trail-start-line">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Start: Parkplatz Porzer Weg</span>
+            </div>
+          </div>
+
+          <div class="card-vis-panel">
+            <div class="vis-header">
+              <span>Echtzeit Höhenprofil</span>
+              <div class="live-height-badge" id="liveHeight2">82 m</div>
+            </div>
+
+            <div class="route-svg-box">
+              <svg class="route-svg" viewBox="0 0 300 140">
+                <line x1="10" y1="20" x2="290" y2="20" class="grid-line" />
+                <line x1="10" y1="70" x2="290" y2="70" class="grid-line" />
+                <line x1="10" y1="120" x2="290" y2="120" class="grid-line" />
+                <path class="route-path-background" d="M 15 50 Q 110 115, 200 55 T 285 95" />
+                <path class="route-path-animated" id="animPath2" stroke="var(--yellow)" d="M 15 50 Q 110 115, 200 55 T 285 95" />
+                <circle class="marker-dot" id="markerDot2" cx="15" cy="50" />
+              </svg>
+            </div>
+
+            <div class="vis-footer-stat">
+              <span>Bachtal Senke (52 m)</span>
+              <span>Schattig und kühl</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       NEU: VOLL ANIMIERTER REGELN SCROLL-ABLAUF
+       Scroll-Tiefe: 380vh
+       Schaltet beim Scrollen die 3 Regeln nacheinander frei!
+  ============================================================= -->
+  <section class="rules-scroll-section" id="regeln">
+    <div class="rules-sticky-stage">
+      <div class="rules-top-info">
+        <div>
+          <span class="section-tag">Sicherheit</span>
+          <h2 class="section-h2" style="margin-bottom: 0.25rem;">Drei Regeln, die ihr wirklich einhalten müsst</h2>
+        </div>
+        <div class="rules-progress-track">
+          <div class="rule-prog-dot active" id="ruleDot0">1</div>
+          <div class="rule-prog-dot" id="ruleDot1">2</div>
+          <div class="rule-prog-dot" id="ruleDot2">3</div>
+        </div>
+      </div>
+
+      <div class="rules-showcase">
+        <!-- Regel 01 -->
+        <div class="rule-stage-card active" id="ruleCard0">
+          <div class="rule-left-col">
+            <div class="rule-badge-tag">
+              <span>Lebensgefahr abseits</span>
+            </div>
+            <h3 class="rule-big-h3">Auf den Wegen bleiben</h3>
+            <p class="rule-detail-p">
+              Kein Witz: Abseits der Wege liegen noch Blindgänger und alte Munition im Sand. Wer die Wege verlässt, riskiert sein Leben und zertrampelt Vogelnester.
+            </p>
+          </div>
+          <div class="rule-radar-box">
+            <div class="radar-sweep-circle">
+              <div class="radar-icon-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+              </div>
+            </div>
+            <div class="radar-status-caption">Munitions-Warnung Aktiv</div>
+          </div>
+        </div>
+
+        <!-- Regel 02 -->
+        <div class="rule-stage-card" id="ruleCard1">
+          <div class="rule-left-col">
+            <div class="rule-badge-tag">
+              <span>Schutz der Bodenbrüter</span>
+            </div>
+            <h3 class="rule-big-h3">Hunde an die Leine</h3>
+            <p class="rule-detail-p">
+              Viele seltene Vögel wie die Heidelerche brüten direkt im Gras auf dem Boden. Wenn ein Hund da durchrennt, hauen die Elterntiere ab und die Eier kühlen aus.
+            </p>
+          </div>
+          <div class="rule-radar-box">
+            <div class="radar-sweep-circle">
+              <div class="radar-icon-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+              </div>
+            </div>
+            <div class="radar-status-caption">Leinenpflicht Streng Kontrolliert</div>
+          </div>
+        </div>
+
+        <!-- Regel 03 -->
+        <div class="rule-stage-card" id="ruleCard2">
+          <div class="rule-left-col">
+            <div class="rule-badge-tag">
+              <span>Waldbrandstufe 4</span>
+            </div>
+            <h3 class="rule-big-h3">Kein Feuer oder Rauchen</h3>
+            <p class="rule-detail-p">
+              Der Sandboden ist im Sommer extrem trocken. Schon eine Zigarettenkippe kann innerhalb von Sekunden einen riesigen Brand auslösen.
+            </p>
+          </div>
+          <div class="rule-radar-box">
+            <div class="radar-sweep-circle">
+              <div class="radar-icon-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+            </div>
+            <div class="radar-status-caption">Absolutes Rauchverbot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       NEU: VOLL ANIMIERTER ZUG-JOURNEY SCROLL-ABLAUF (HINKOMMEN)
+       Scroll-Tiefe: 350vh
+       Beim Scrollen fährt der Zug live über die Schiene von 0% bis 100%!
+  ============================================================= -->
+  <section class="transit-scroll-section" id="anreise">
+    <div class="transit-sticky-stage">
+      <div class="transit-hud-box">
+        <div class="transit-controls-row">
+          <div>
+            <span class="section-tag">Hinkommen</span>
+            <h2 class="section-h2" style="margin-bottom: 0.25rem;">Anreise mit Bahn und Bus</h2>
+            <p style="color: var(--text-muted); font-size: 0.94rem;">
+              Man braucht nicht mal ein Auto, weil die S-Bahn direkt an der Heide hält.
+            </p>
+          </div>
+
+          <div class="live-odometer">
+            <div class="odo-item">
+              <span class="odo-label">Strecke</span>
+              <span class="odo-val" id="odoDist">0.0 km</span>
+            </div>
+            <div class="odo-item">
+              <span class="odo-label">Fahrzeit</span>
+              <span class="odo-val" id="odoTime">0 min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visuelle Zugstrecke -->
+        <div class="transit-rail-arena">
+          <div class="rail-track-line">
+            <div class="rail-glow-fill" id="railProgressFill"></div>
+            <!-- Das fahrende Zug-Icon -->
+            <div class="train-moving-beacon" id="trainBeacon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="3" width="16" height="16" rx="2"></rect><path d="M4 11h16"></path><path d="M12 3v8"></path><path d="m8 19-2 3"></path><path d="m18 22-2-3"></path></svg>
+            </div>
+          </div>
+
+          <div class="rail-stops-grid">
+            <div class="stop-node passed" id="stop0">
+              <div class="stop-circle">1</div>
+              <div class="stop-title">Köln Hbf</div>
+              <div class="stop-desc">Abfahrt Gl. 10</div>
+            </div>
+            <div class="stop-node" id="stop1">
+              <div class="stop-circle">2</div>
+              <div class="stop-title">Messe/Deutz</div>
+              <div class="stop-desc">Zwischenhalt</div>
+            </div>
+            <div class="stop-node" id="stop2">
+              <div class="stop-circle">3</div>
+              <div class="stop-title">Porz-Wahn</div>
+              <div class="stop-desc">Ziel-Bahnhof</div>
+            </div>
+            <div class="stop-node" id="stop3">
+              <div class="stop-circle">4</div>
+              <div class="stop-title">Heidewald</div>
+              <div class="stop-desc">Direkter Zugang</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-info-card">
+          <div class="transit-text-expl" id="transitDynamicText">
+            Mit der <strong>S 12</strong> oder <strong>S 19</strong> bis zur Haltestelle <strong>Porz-Wahn</strong> fahren. Von dort aus kann man direkt zu Fuß in den Wald und die Heide starten.
+          </div>
+          <a href="#wandern" class="btn-cta">
+            Wanderroute wählen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       FOOTER
+  ============================================================= -->
+  <footer class="footer">
+    <div>
+      Wahner Heide Naturschutzgebiet : 50°52'14" N, 7°10'14" E
+    </div>
+    <div>
+      Ganzjährig frei zugänglich auf markierten Wegen.
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       SCRIPTS: 
+       1. 260px CURSOR & FINGER-TOUCH SPOTLIGHT
+       2. IMMERSIVE CHRONICLES
+       3. WANDERWEGE MIT DYNAMISCHER HÖHENPROFIL-ZEICHNUNG
+       4. REGELN SCROLL-RADAR
+       5. FAHRENDER ZUG-SIMULATOR BEIM SCROLLEN
+       6. WEB AUDIO
+  ============================================================= -->
+  <script>
+    /* -------------------------------------------------------------
+       1. 260px SPOTLIGHT REVEAL (MAUS & TOUCH)
+    -------------------------------------------------------------- */
+    const heroEl = document.getElementById('hero');
+    const photoLayer = document.getElementById('cursorReveal');
+    let mX = -1000, mY = -1000, posX = -1000, posY = -1000;
+    let inHero = false;
+    const RADIUS = 260;
+
+    heroEl.addEventListener('mouseenter', () => {
+      inHero = true;
+      photoLayer.classList.add('active');
+    });
+
+    heroEl.addEventListener('mouseleave', () => {
+      inHero = false;
+      photoLayer.classList.remove('active');
+    });
+
+    heroEl.addEventListener('mousemove', (e) => {
+      const rect = heroEl.getBoundingClientRect();
+      mX = e.clientX - rect.left;
+      mY = e.clientY - rect.top;
+    });
+
+    heroEl.addEventListener('touchstart', (e) => {
+      inHero = true;
+      photoLayer.classList.add('active');
+      const rect = heroEl.getBoundingClientRect();
+      mX = e.touches[0].clientX - rect.left;
+      mY = e.touches[0].clientY - rect.top;
+      posX = mX;
+      posY = mY;
+    }, { passive: true });
+
+    heroEl.addEventListener('touchmove', (e) => {
+      const rect = heroEl.getBoundingClientRect();
+      mX = e.touches[0].clientX - rect.left;
+      mY = e.touches[0].clientY - rect.top;
+    }, { passive: true });
+
+    function loopSpotlight() {
+      posX += (mX - posX) * 0.16;
+      posY += (mY - posY) * 0.16;
+
+      if (inHero) {
+        const mask = `radial-gradient(circle ${RADIUS}px at ${posX}px ${posY}px, black 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.3) 75%, transparent 100%)`;
+        photoLayer.style.maskImage = mask;
+        photoLayer.style.webkitMaskImage = mask;
+      }
+      requestAnimationFrame(loopSpotlight);
+    }
+    loopSpotlight();
+
+    /* -------------------------------------------------------------
+       2. IMMERSIVE BÜHNE (KAPITEL 1-3)
+    -------------------------------------------------------------- */
+    const stageWrap = document.getElementById('erlebnis');
+    const bgImgs = [document.getElementById('bgImg1'), document.getElementById('bgImg2'), document.getElementById('bgImg3')];
+    const chapCards = [document.getElementById('cardChap1'), document.getElementById('cardChap2'), document.getElementById('cardChap3')];
+
+    function updateImmersiveStage() {
+      const rect = stageWrap.getBoundingClientRect();
+      const total = stageWrap.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const prog = Math.min(Math.max(scrolled / total, 0), 1);
+
+      let step = 0;
+      if (prog > 0.66) step = 2;
+      else if (prog > 0.33) step = 1;
+
+      bgImgs.forEach((img, i) => img.classList.toggle('active', i === step));
+      chapCards.forEach((c, i) => c.classList.toggle('active', i === step));
+    }
+
+    /* -------------------------------------------------------------
+       3. WANDERWEGE MIT DYNAMISCHER HÖHENPROFIL-ZEICHNUNG
+       Zeichnet den Pfad und bewegt den Marker auf der Kurve!
+    -------------------------------------------------------------- */
+    const stackWrap = document.getElementById('wandern');
+    const stackCards = [document.getElementById('stackCard0'), document.getElementById('stackCard1'), document.getElementById('stackCard2')];
+    const stackTabs = [document.getElementById('tab0'), document.getElementById('tab1'), document.getElementById('tab2')];
+    const animPaths = [document.getElementById('animPath0'), document.getElementById('animPath1'), document.getElementById('animPath2')];
+    const markers = [document.getElementById('markerDot0'), document.getElementById('markerDot1'), document.getElementById('markerDot2')];
+    const heightBadges = [document.getElementById('liveHeight0'), document.getElementById('liveHeight1'), document.getElementById('liveHeight2')];
+    let currentStackIndex = 0;
+
+    function applyStackStates(idx) {
+      currentStackIndex = idx;
+      stackCards.forEach((card, i) => {
+        card.classList.remove('state-behind', 'state-active', 'state-ahead');
+        if (i < idx) card.classList.add('state-behind');
+        else if (i === idx) card.classList.add('state-active');
+        else card.classList.add('state-ahead');
+      });
+
+      stackTabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === idx);
+      });
+    }
+
+    function setManualTrail(idx) {
+      applyStackStates(idx);
+    }
+
+    function updateTrailScroll() {
+      const rect = stackWrap.getBoundingClientRect();
+      const total = stackWrap.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      if (scrolled < 0 || scrolled > total) return;
+
+      const prog = Math.min(Math.max(scrolled / total, 0), 1);
+
+      let activeIdx = 0;
+      let cardSubProg = 0;
+
+      if (prog < 0.33) {
+        activeIdx = 0;
+        cardSubProg = prog / 0.33;
+      } else if (prog < 0.66) {
+        activeIdx = 1;
+        cardSubProg = (prog - 0.33) / 0.33;
+      } else {
+        activeIdx = 2;
+        cardSubProg = (prog - 0.66) / 0.34;
+      }
+
+      if (window.innerWidth > 860 && activeIdx !== currentStackIndex) {
+        applyStackStates(activeIdx);
+      }
+
+      // Animiert den Höhenpfad & Marker auf der aktiven Karte
+      const pathEl = animPaths[activeIdx];
+      const marker = markers[activeIdx];
+      const badge = heightBadges[activeIdx];
+
+      if (pathEl && marker) {
+        const totalLen = pathEl.getTotalLength ? pathEl.getTotalLength() : 400;
+        const currentLen = totalLen * cardSubProg;
+        pathEl.style.strokeDashoffset = totalLen - currentLen;
+
+        // Position des Markers auf der SVG-Kurve berechnen
+        try {
+          const pt = pathEl.getPointAtLength(Math.max(currentLen, 1));
+          marker.setAttribute('cx', pt.x);
+          marker.setAttribute('cy', pt.y);
+
+          // Höhen-Berechnung für die drei Touren
+          let heightVal = 64;
+          if (activeIdx === 0) {
+            // Roter Weg: 64m -> 134m Gipfel -> 78m
+            heightVal = Math.round(64 + Math.sin(cardSubProg * Math.PI) * 70);
+          } else if (activeIdx === 1) {
+            // Blauer Weg: 72m -> 88m
+            heightVal = Math.round(72 + Math.sin(cardSubProg * Math.PI) * 16);
+          } else {
+            // Gelber Weg: 82m -> 52m Bachtal -> 75m
+            heightVal = Math.round(82 - Math.sin(cardSubProg * Math.PI) * 30);
+          }
+          if (badge) badge.innerText = `${heightVal} m`;
+        } catch(e){}
+      }
+    }
+
+    /* -------------------------------------------------------------
+       4. REGELN SCROLL-RADAR (SCHALTET BEIM SCROLLEN DIE REGELN UM)
+    -------------------------------------------------------------- */
+    const rulesWrap = document.getElementById('regeln');
+    const ruleCards = [document.getElementById('ruleCard0'), document.getElementById('ruleCard1'), document.getElementById('ruleCard2')];
+    const ruleDots = [document.getElementById('ruleDot0'), document.getElementById('ruleDot1'), document.getElementById('ruleDot2')];
+
+    function updateRulesScroll() {
+      const rect = rulesWrap.getBoundingClientRect();
+      const total = rulesWrap.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      if (scrolled < 0 || scrolled > total) return;
+
+      const prog = Math.min(Math.max(scrolled / total, 0), 1);
+      let step = 0;
+      if (prog > 0.66) step = 2;
+      else if (prog > 0.33) step = 1;
+
+      ruleCards.forEach((c, i) => c.classList.toggle('active', i === step));
+      ruleDots.forEach((d, i) => d.classList.toggle('active', i === step));
+    }
+
+    /* -------------------------------------------------------------
+       5. FAHRENDER ZUG-SIMULATOR BEIM SCROLLEN (HINKOMMEN)
+    -------------------------------------------------------------- */
+    const transitWrap = document.getElementById('anreise');
+    const railFill = document.getElementById('railProgressFill');
+    const trainBeacon = document.getElementById('trainBeacon');
+    const stops = [document.getElementById('stop0'), document.getElementById('stop1'), document.getElementById('stop2'), document.getElementById('stop3')];
+    const odoDist = document.getElementById('odoDist');
+    const odoTime = document.getElementById('odoTime');
+
+    function updateTransitScroll() {
+      const rect = transitWrap.getBoundingClientRect();
+      const total = transitWrap.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      if (scrolled < 0 || scrolled > total) return;
+
+      const prog = Math.min(Math.max(scrolled / total, 0), 1);
+
+      // Fortschritt in Prozent
+      const pct = prog * 100;
+      if (railFill) railFill.style.width = `${pct}%`;
+      if (trainBeacon) trainBeacon.style.left = `${pct}%`;
+
+      // Odometer Werte live berechnen
+      const dist = (prog * 16.2).toFixed(1);
+      const time = Math.round(prog * 14);
+      if (odoDist) odoDist.innerText = `${dist} km`;
+      if (odoTime) odoTime.innerText = `${time} min`;
+
+      // Haltestellen aktivieren
+      if (stops[0]) stops[0].classList.toggle('passed', prog >= 0.0);
+      if (stops[1]) stops[1].classList.toggle('passed', prog >= 0.33);
+      if (stops[2]) stops[2].classList.toggle('passed', prog >= 0.66);
+      if (stops[3]) stops[3].classList.toggle('passed', prog >= 0.95);
+    }
+
+    /* -------------------------------------------------------------
+       ZENTRALER SCROLL-HANDLER
+    -------------------------------------------------------------- */
+    window.addEventListener('scroll', () => {
+      updateImmersiveStage();
+      updateTrailScroll();
+      updateRulesScroll();
+      updateTransitScroll();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      updateImmersiveStage();
+      updateTrailScroll();
+      updateRulesScroll();
+      updateTransitScroll();
+    }, { passive: true });
+
+    updateImmersiveStage();
+    updateTrailScroll();
+    updateRulesScroll();
+    updateTransitScroll();
+
+    /* -------------------------------------------------------------
+       6. GENERATIVE NATURE SOUND
+    -------------------------------------------------------------- */
+    let audioCtx = null;
+    let isPlaying = false;
+    let noiseNode = null;
+    let gainNode = null;
+    const soundToggle = document.getElementById('soundToggle');
+    const soundLabel = document.getElementById('soundLabel');
+
+    function toggleSound() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      if (!isPlaying) {
+        const bufferSize = audioCtx.sampleRate * 2;
+        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          output[i] = (lastOut + (0.02 * white)) / 1.02;
+          lastOut = output[i];
+          output[i] *= 3.5;
+        }
+
+        noiseNode = audioCtx.createBufferSource();
+        noiseNode.buffer = noiseBuffer;
+        noiseNode.loop = true;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(320, audioCtx.currentTime);
+
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 2);
+
+        noiseNode.connect(filter).connect(gainNode).connect(audioCtx.destination);
+        noiseNode.start();
+
+        isPlaying = true;
+        soundToggle.classList.add('playing');
+        soundLabel.innerText = "AUDIO AN";
+      } else {
+        if (gainNode) {
+          gainNode.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        }
+        setTimeout(() => {
+          if (noiseNode) {
+            try { noiseNode.stop(); } catch(e){}
+          }
+          isPlaying = false;
+          soundToggle.classList.remove('playing');
+          soundLabel.innerText = "AUDIO AUS";
+        }, 500);
+      }
+    }
+
+    soundToggle.addEventListener('click', toggleSound);
+  </script>
+</body>
+</html>
